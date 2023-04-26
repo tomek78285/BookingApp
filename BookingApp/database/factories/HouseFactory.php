@@ -22,7 +22,7 @@ class HouseFactory extends Factory
             'description' => fake()->text(),
             'address' => fake()->address(),
             'price' => Str::random(1000),
-            'id_owner' => 1
+            'id_owner' => 1,
         ];
     }
 
