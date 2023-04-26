@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
-use App\Models\House;
+use App\Http\Controllers\HouseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +38,11 @@ Route::post('/user/{user}', [UserController::class, 'update'])->name('user.updat
 
 ################## SPIS DOMKÓW ##################
 Route::get('/house',[HouseController::class, 'index'])->name('house.index');
+Route::get('/house/create', [HouseController::class, 'create'])->name('house.create');
+Route::post('/house', [HouseController::class, 'store'])->name('house.store');
+Route::get('/house/edit/{house}', [HouseController::class, 'edit'])->name('house.edit');
+Route::post('/house/{house}', [HouseController::class, 'update'])->name('house.update');
+Route::get('/house/delete/{house}', [HouseController::class, 'delete'])->name('house.delete');
 
 Auth::routes();
 
