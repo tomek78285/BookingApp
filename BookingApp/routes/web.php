@@ -21,6 +21,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 // Route::middleware(['can:isAdmin'])->group(function() {
 //     Route::get('/admin', [App\Http\Controllers\UserController::class, 'index'])->name('admin');    
 // });
