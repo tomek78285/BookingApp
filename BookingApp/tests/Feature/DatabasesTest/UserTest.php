@@ -28,12 +28,8 @@ class UserTest extends TestCase
 
         $this->assertDatabaseHas('users', [
             'name' => $user->name,
-            'description' => $user->description,
             'email' => $user->email,
-            'address' => $user->address,
-            'number_of_rooms' => $user->number_of_rooms,
-            'price' => $user->price,
-            'id_owner' => $user->id_owner,
+            'role' => $user->role,
         ]);
     }
 
@@ -52,12 +48,8 @@ class UserTest extends TestCase
  
         $this->assertDatabaseHas('users', [
             'name' => $user->name,
-            'description' => $user->description,
             'email' => $user->email,
-            'address' => $user->address,
-            'number_of_rooms' => $user->number_of_rooms,
-            'price' => $user->price,
-            'id_owner' => $user->id_owner,
+            'role' => $user->role,
         ]);
 
         $user->name = "newName";

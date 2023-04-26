@@ -29,10 +29,10 @@ class HouseTest extends TestCase
 
         $this->assertDatabaseHas('houses', [
             'name' => $house->name,
-            'name' => $house->description,
-            'name' => $house->address,
-            'name' => $house->number_of_rooms,
-            'name' => $house->price
+            'description' => $house->description,
+            'address' => $house->address,
+            'number_of_rooms' => $house->number_of_rooms,
+            'price' => $house->price
         ]);
     }
 
@@ -51,10 +51,10 @@ class HouseTest extends TestCase
 
         $this->assertDatabaseHas('houses', [
             'name' => $house->name,
-            'name' => $house->description,
-            'name' => $house->address,
-            'name' => $house->number_of_rooms,
-            'name' => $house->price
+            'description' => $house->description,
+            'address' => $house->address,
+            'number_of_rooms' => $house->number_of_rooms,
+            'price' => $house->price
         ]);
 
         $house->name = "newName";
@@ -62,6 +62,5 @@ class HouseTest extends TestCase
         $this->assertDatabaseHas('houses', [
             'name' => "newName",
         ]);
-        
     }
 }
