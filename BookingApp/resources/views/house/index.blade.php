@@ -28,6 +28,16 @@
                         {{ $house->number_of_rooms }} |
                         {{ $house->price }} |
                         {{ $house->id_owner }} |
+                        <a href="{{ route('house.show', $house->id) }}">
+                            <button type="submit">
+                                Zobacz opinie
+                            </button>
+                        </a>
+                        <a href="{{ route('house.rating', $house->id) }}">
+                            <button type="submit">
+                                Oceń
+                            </button>
+                        </a>
                         <a href="{{ route('house.edit', $house->id) }}">
                             <button type="submit">
                                 Edytuj

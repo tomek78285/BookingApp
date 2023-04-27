@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\House;
+use App\Models\Opinions;
 use Illuminate\Contracts\View\View as View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class HouseController extends Controller
 {
@@ -32,7 +34,21 @@ class HouseController extends Controller
         ]);
     }
 
-        /**
+    /**
+     * Display the specified resource.
+     *
+     * @param  Test  $test
+     * @return View
+     */
+    public function show(House $house): View
+    {
+        return view("house.show", [
+            'house' => $house,
+            'opinions' => Opinions::all()->where('id_house', $house->id)
+        ]);
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return View
@@ -60,6 +76,26 @@ class HouseController extends Controller
         $house->id_owner = Auth::user()->id;
 
         $house->save();
+
+        return redirect(route('house.index'));
+    }
+
+    public function rating(): View
+    {
+        return view('house.rating', []);
+    }
+
+    public function rate(Request $request, House $house): RedirectResponse
+    {
+        $opinion = new Opinions();
+
+        $opinion->description = $request->description;
+        $opinion->rating = $request->rating;
+        $opinion->id_house = $house->id;
+        $opinion->id_user = Auth::user()->id;
+        $opinion->date = Carbon::now();
+
+        $opinion->save();
 
         return redirect(route('house.index'));
     }

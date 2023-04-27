@@ -39,11 +39,14 @@ Route::post('/user/{user}', [UserController::class, 'update'])->name('user.updat
 
 ################## SPIS DOMKÓW ##################
 Route::get('/house',[HouseController::class, 'index'])->name('house.index');
+Route::get('/house/show/{house}', [HouseController::class, 'show'])->name('house.show');
 Route::get('/house/create', [HouseController::class, 'create'])->name('house.create');
 Route::post('/house', [HouseController::class, 'store'])->name('house.store');
 Route::get('/house/edit/{house}', [HouseController::class, 'edit'])->name('house.edit');
 Route::post('/house/{house}', [HouseController::class, 'update'])->name('house.update');
 Route::get('/house/delete/{house}', [HouseController::class, 'delete'])->name('house.delete');
+Route::get('/house/rating/{house}', [HouseController::class, 'rating'])->name('house.rating');
+Route::post('/house/rating/{house}', [HouseController::class, 'rate'])->name('house.rate');
 
 Auth::routes();
 
