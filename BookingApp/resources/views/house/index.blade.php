@@ -33,6 +33,11 @@
                                 Zobacz opinie
                             </button>
                         </a>
+                        <a href="{{ route('house.reserve', $house->id) }}">
+                            <button type="submit">
+                                Rezerwuj
+                            </button>
+                        </a>
                         <a href="{{ route('house.rating', $house->id) }}">
                             <button type="submit">
                                 Oceń

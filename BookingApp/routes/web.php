@@ -47,6 +47,8 @@ Route::post('/house/{house}', [HouseController::class, 'update'])->name('house.u
 Route::get('/house/delete/{house}', [HouseController::class, 'delete'])->name('house.delete');
 Route::get('/house/rating/{house}', [HouseController::class, 'rating'])->name('house.rating');
 Route::post('/house/rating/{house}', [HouseController::class, 'rate'])->name('house.rate');
+Route::get('/house/reserving/{house}', [HouseController::class, 'reserving'])->name('house.reserving');
+Route::post('/house/reserving/{house}', [HouseController::class, 'reserve'])->name('house.reserve');
 
 Auth::routes();
 

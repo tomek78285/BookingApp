@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\House;
 use App\Models\Opinions;
+use App\Models\Reservation;
 use Illuminate\Contracts\View\View as View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
@@ -96,6 +97,26 @@ class HouseController extends Controller
         $opinion->date = Carbon::now();
 
         $opinion->save();
+
+        return redirect(route('house.index'));
+    }
+
+    public function reserving(): View
+    {
+        return view('house.reserving', []);
+    }
+
+    public function reserve(Request $request, House $house): RedirectResponse
+    {
+        $reservation = new Reservation();
+
+        $reservation->start_date = $request->since;
+        $reservation->end_date = $request->to;
+        $reservation->id_house = $house->id;
+        $reservation->price = $house->price;
+        $reservation->id_user = Auth::user()->id;
+
+        $reservation->save();
 
         return redirect(route('house.index'));
     }
