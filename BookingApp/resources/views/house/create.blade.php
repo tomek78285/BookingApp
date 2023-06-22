@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header" style>{{__('Nowy domek')}}</div>
                     <div class="card-body">
-                    <form action="{{ route('house.store') }}" method="POST" id="houseForm" name="sendHouse">
+                    <form action="{{ route('house.store') }}" method="POST" id="houseForm" name="sendHouse" enctype="multipart/form-data">
                     {{ csrf_field() }}    
                         <div class="form-group row">
                             <label for="name_House" class="col-md-4 col-form-label text-md-right">{{ __('Nazwa') }}</label>
@@ -45,9 +45,17 @@
                             <label for="price" class="col-md-4 col-form-label text-md-right">{{ __('Cena') }}</label>
 
                             <div class="col-md-6">
-                                <input id="price" type="number" class="form-control" name="price" " required autocomplete="price" autofocus>
+                                <input id="price" type="number" class="form-control" name="price" required autocomplete="price" autofocus>
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="price" class="col-md-4 col-form-label text-md-right">{{ __('Zdjęcie') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="photo" type="file" class="form-control" name="photo" accept="Images/*" required>
+                            </div>
+                        </div>
+
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -5,34 +6,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Booking App</title>
   <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+  <link rel="stylesheet" href="{{ asset('owl.carousel.min.css')}}">
+  <link rel="stylesheet" href="{{ asset('owl.theme.default.min.css')}}">
+  <script src="{{ asset('https://code.jquery.com/jquery-1.12.4.min.js') }}" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css') }}" integrity="sha512-UTNP5BXLIptsaj5WdKFrkFov94lDx+eBvbKyoe1YAfjeRPC+gT5kyZ10kOHCfNZqEui1sxmqvodNUx3KbuYI/A==" crossorigin="anonymous"
     referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css') }}" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <script src="{{ asset('https://code.jquery.com/jquery-1.12.4.min.js') }}" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+  
 </head>
 
 <body>
 
 
-  <header>
+<header>
     <div class="content flex_space">
-      <div class="logo">
-        <img src="images/logo1.png" alt="">
-      </div>
-      <div class="navlinks">
-        <ul id="menulist">
-          <li><a href="#home">Strona główna</a> </li>
-          <li><a href="#about">O nas</a> </li>
-          <li><a href="#houses">Domki</a> </li>
-          <li><a href="#contact">Kontakt</a> </li>
-          <li> <i class="fa fa-search"></i> </li>
-          <li> <button class="primary-btn">Zaloguj się</button> </li>
-        </ul>
-        <span class="fa fa-bars" onclick="menutoggle()"></span>
-      </div>
+        <div class="logo">
+            <img src="images/logo1.png" alt="">
+        </div>
+        <div class="navlinks">
+            <ul id="menulist">
+                <li><a href="/">Strona główna</a></li>
+                <li><a href="#">O nas</a></li>
+                <li><a href="/domki">Domki</a></li>
+                <li><a href="#contact">Kontakt</a></li>
+                <li><i class="fa fa-search"></i></li>
+                @auth
+                    <li>
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="primary-btn">Wyloguj się</button>
+                        </form>
+                    </li>
+                @else
+                    <li><a href="{{ route('login') }}"><button class="primary-btn">Zaloguj się</button></a></li>
+                @endauth
+            </ul>
+            <span class="fa fa-bars" onclick="menutoggle()"></span>
+        </div>
     </div>
-  </header>
+</header>
 
   <script>
     var menulist = document.getElementById('menulist');
@@ -58,7 +71,7 @@
             <p>Lorem ipsum dolor sit amet constur adipisicing elit sed do eiusmtem por incid.
             </p>
             <div class="flex">
-              <button class="primary-btn">NASZA OFERTA</button>
+            <a href="/domki"><button class="primary-btn">NASZA OFERTA</button></a>
               <button class="secondary-btn">KONTAKT</button>
             </div>
           </div>
@@ -70,7 +83,7 @@
             <p>Lorem ipsum dolor sit amet constur adipisicing elit sed do eiusmtem por incid.
             </p>
             <div class="flex">
-              <button class="primary-btn">NASZA OFERTA</button>
+              <a href="/domki"><button class="primary-btn">NASZA OFERTA</button></a>
               <button class="secondary-btn">KONTAKT</button>
             </div>
           </div>
@@ -409,6 +422,13 @@
 
 
   <script src="https://kit.fontawesome.com/032d11eac3.js" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+	<script>
+		$(function () {
+			$('[data-toggle="tooltip"]').tooltip()
+		})
+	</script>
 </body>
 
 </html>

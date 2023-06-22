@@ -20,6 +20,12 @@ use App\Http\Controllers\HouseController;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/domki', function () {
+    return view('houses');
+});
+Route::get('/rezerwacja', function () {
+    return view('house_details');
+});
 
 
 // Route::middleware(['can:isAdmin'])->group(function() {
@@ -38,6 +44,8 @@ Route::get('/user/edit/{user}', [UserController::class, 'edit'])->name('user.edi
 Route::post('/user/{user}', [UserController::class, 'update'])->name('user.update');
 
 ################## SPIS DOMKÓW ##################
+Route::get('/domki',[HouseController::class, 'index'])->name('houses');
+// Route::get('/domki/show/{house}', [HouseController::class, 'show'])->name('house.show');
 Route::get('/house',[HouseController::class, 'index'])->name('house.index');
 Route::get('/house/show/{house}', [HouseController::class, 'show'])->name('house.show');
 Route::get('/house/create', [HouseController::class, 'create'])->name('house.create');

@@ -5,8 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-
-                <div class="card-header">{{ __('Opinie domków') }}</div>
+                <div class="card-header">{{ __('Opinie o domku') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -15,18 +14,24 @@
                         </div>
                     @endif
 
-                    {{ __('Oceny') }}
-                    </br>
-                    @foreach($opinions as $opinion)
-                        {{ $opinion->id }} | 
-                        {{ $opinion->rating }} |
-                        {{ $opinion->description }} |
-                        {{ $opinion->house->name }} |
-                        {{ $opinion->user->name }} |
-                    @endforeach
+                    <h5>{{ __('Od naszych klientów:') }}</h5>
+                    <ul>
+                        @foreach($opinions as $opinion)
+                            
+                            <li>
+                                Ocena domku: {{ $opinion->rating }} 
+                            </li>
+                            
+                            <li>
+                            Komentarz: {{ $opinion->description }}
+                            </li>
+                            <li></li>
+                        @endforeach
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 @endsection
