@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 class HouseController extends Controller
 {
@@ -43,6 +44,7 @@ class HouseController extends Controller
      */
     public function show(House $house): View
     {
+        
         return view("house.show", [
             'house' => $house,
             'opinions' => Opinions::all()->where('id_house', $house->id)
@@ -69,27 +71,30 @@ class HouseController extends Controller
     {
         $house = new House();
 
+        $house->photo = $request->file('photo')->store('photos', 'public');
         $house->name = $request->name_House;
         $house->description = $request->description_House;
         $house->address = $request->address_House;
         $house->number_of_rooms = $request->rooms_House;
         $house->price = $request->price;
         $house->id_owner = Auth::user()->id;
-
         $house->save();
 
         return redirect(route('house.index'));
     }
 
-    public function rating(): View
+    public function rating($houseId): View
     {
-        return view('house.rating', []);
+        $house = House::findOrFail($houseId);
+    
+        return view('house.rating', ['house' => $house]);
     }
+    
 
     public function rate(Request $request, House $house): RedirectResponse
     {
         $opinion = new Opinions();
-
+        $houseId = $house->id;
         $opinion->description = $request->description;
         $opinion->rating = $request->rating;
         $opinion->id_house = $house->id;
@@ -101,9 +106,11 @@ class HouseController extends Controller
         return redirect(route('house.index'));
     }
 
-    public function reserving(): View
+    public function reserving($houseId): View
     {
-        return view('house.reserving', []);
+        $house = House::findOrFail($houseId);
+
+        return view('house.reserving', ['house' => $house]);
     }
 
     public function reserve(Request $request, House $house): RedirectResponse
@@ -118,7 +125,7 @@ class HouseController extends Controller
 
         $reservation->save();
 
-        return redirect(route('house.index'));
+        return redirect(route('house.index'))->with('success', 'Rezerwacja zakończona pomyślnie!');
     }
 
     /**
